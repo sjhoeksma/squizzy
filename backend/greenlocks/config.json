@@ -1,0 +1,27 @@
+{
+  "sites": [
+    {
+      "subject": "www.squizzy.nl",
+      "altnames": [
+        "squizzy.nl",
+        "www.squizzy.nl"
+      ],
+      "renewAt": 1636028348101
+    }
+  ],
+  "defaults": {
+    "store": {
+      "module": "greenlock-store-fs"
+    },
+    "challenges": {
+      "http-01": {
+        "module": "acme-http-01-standalone"
+      }
+    },
+    "renewOffset": "-45d",
+    "renewStagger": "3d",
+    "accountKeyType": "EC-P256",
+    "serverKeyType": "RSA-2048",
+    "subscriberEmail": "info@3pi.dev"
+  }
+}

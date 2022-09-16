@@ -1,0 +1,34 @@
+.DS_Store
+node_modules
+dist
+backend/db
+
+
+# local env files
+.env
+.env.local
+.env.*.local
+.env.json
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+/backend/sessions/*
+/backend/app
+/backend/studio
+/backend/config/env.json
+/backend/greenlocks/accounts/
+/backend/greenlocks/live/
+/backend/greenlocks/config.json.bak
+/backend/.greenlockrc

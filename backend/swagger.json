@@ -1,0 +1,181 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "defaultTitle",
+    "description" : "defaultDescription",
+    "version" : "0.1"
+  },
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "paths" : {
+    "/v1/data/mutate/{environment}" : {
+      "post" : {
+        "description" : "Mutate a dataset",
+        "parameters" : [ {
+          "name" : "visibility",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "async"
+        }, {
+          "name" : "returnIds",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "example" : "true"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/data/query/{environment}" : {
+      "get" : {
+        "description" : "Query a data set",
+        "parameters" : [ {
+          "name" : "query",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "[*[_id in [\"drafts.b0cf04e7-449f-46ff-b731-86de5913a278\"]][0...1]{_id,_rev,_type,_type},*[_id in [\"drafts.b0cf04e7-449f-46ff-b731-86de5913a278\"]][0...1]{_id,_rev,_type,title,questions}][0...2]"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector"
+          }
+        }
+      },
+      "options" : {
+        "description" : "Query a data set",
+        "parameters" : [ {
+          "name" : "query",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "[*[_id in [\"drafts.b0cf04e7-449f-46ff-b731-86de5913a278\"]][0...1]{_id,_rev,_type,_type},*[_id in [\"drafts.b0cf04e7-449f-46ff-b731-86de5913a278\"]][0...1]{_id,_rev,_type,title,questions}][0...2]"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector"
+          }
+        }
+      }
+    },
+    "/v1/data/doc/*" : {
+      "get" : {
+        "description" : "Load completed dataset",
+        "responses" : {
+          "200" : {
+            "description" : "Data set"
+          }
+        }
+      }
+    },
+    "/v1/users/me" : {
+      "get" : {
+        "description" : "Information of loggedin user",
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/versions" : {
+      "get" : {
+        "description" : "Check the pacakge infromation",
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        },
+        "servers" : [ {
+          "url" : "http://pv5f4dow.localhost:3900"
+        } ]
+      },
+      "servers" : [ {
+        "url" : "http://pv5f4dow.localhost:3900"
+      } ]
+    },
+    "/v1/datasets" : {
+      "get" : {
+        "description" : "Return all data set",
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector",
+            "content" : {
+              "application/json; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/ping" : {
+      "get" : {
+        "description" : "Connection tester",
+        "responses" : {
+          "200" : {
+            "description" : "Return pong",
+            "content" : {
+              "text/plain; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : { }
+}

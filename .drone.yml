@@ -1,0 +1,113 @@
+---
+#####################################
+# Default development pipeline
+#####################################
+kind: pipeline
+type: kubernetes
+name: develop
+
+metadata:
+  namespace: ${DRONE_REPO_NAME,,}-dev
+
+steps:
+  - name: publish
+    image: plugins/docker
+    settings:
+     repo: ${DRONE_REPO,,}
+     tags:
+        - ${DRONE_SOURCE_BRANCH/\//-}
+        - ${DRONE_SOURCE_BRANCH/\//-}-${DRONE_COMMIT_SHA:0:8}
+        - "latest-dev"
+     username:
+       from_secret: docker_username
+     password:
+       from_secret: docker_password
+     
+# We trigger only when we are pushed by webhook    
+trigger:
+  branch:
+  - develop
+  event: 
+  - push    
+
+
+---
+#####################################
+# Default release pipeline
+#####################################
+kind: pipeline
+type: kubernetes
+name: release
+
+metadata:
+  namespace: ${DRONE_REPO_NAME,,}-stg
+
+steps:
+  - name: publish
+    image: plugins/docker
+    settings:
+     repo: ${DRONE_REPO,,}
+     tags:
+        - ${DRONE_SOURCE_BRANCH/\//-}
+        - ${DRONE_SOURCE_BRANCH/\//-}-${DRONE_COMMIT_SHA:0:8}
+        - "latest-release"
+     username:
+       from_secret: docker_username
+     password:
+       from_secret: docker_password
+     
+# We trigger only when we are pushed by webhook    
+trigger:
+  branch:
+  - release
+  event: 
+  - tag   
+
+---
+#####################################
+# Default production pipeline
+#####################################
+kind: pipeline
+type: kubernetes
+name: master
+
+metadata:
+  namespace: ${DRONE_REPO_NAME,,}
+
+steps:
+  - name: publish
+    image: plugins/docker
+    settings:
+     repo: ${DRONE_REPO,,}
+     tags:
+        - ${DRONE_SOURCE_BRANCH/\//-}
+        - ${DRONE_SOURCE_BRANCH/\//-}-${DRONE_COMMIT_SHA:0:8}
+        - "latest"
+     username:
+       from_secret: docker_username
+     password:
+       from_secret: docker_password
+     
+# We trigger only when we are pushed by webhook    
+trigger:
+  branch:
+  - master
+  event: 
+  - tag      
+
+################################################
+# Default section to get the system wide secrets
+################################################
+---
+kind: secret
+name: docker_username
+get:
+  path: docker
+  name: username
+
+---
+kind: secret
+name: docker_password
+get:
+  path: docker
+  name: password

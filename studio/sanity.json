@@ -1,0 +1,46 @@
+{
+  "root": true,
+  "project": {
+    "name": "squizzy",
+    "basePath": "/studio"
+  },
+  "api": {
+    "projectId": "pv5f4dow-x",
+    "dataset": "production",
+    "apiHost": "https://www.squizzy.nl",
+    "namespace": "production",
+    "useProjectHostname": true,
+    "gradientMode": true,
+    "useCdn": false,
+    "apiVersion" : "v1"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool",
+    "quiz-match",
+    "asset-source-unsplash"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "@sanity/vision"
+      ],
+      "api": {
+        "apiHost": "https://www.squizzy.nl"
+      }
+    }
+  },
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema.js"
+    },
+    {
+      "implements": "part:@sanity/base/theme/variables/override-style",
+      "path": "./squizzyTheme.css"
+    }
+  ]
+}
