@@ -7,7 +7,7 @@
   "api": {
     "projectId": "pv5f4dow-x",
     "dataset": "production",
-    "apiHost": "https://www.squizzy.nl",
+    "apiHost": "https://squizzy.os1.nl",
     "namespace": "production",
     "useProjectHostname": true,
     "gradientMode": true,
@@ -29,7 +29,7 @@
         "@sanity/vision"
       ],
       "api": {
-        "apiHost": "https://www.squizzy.nl"
+        "apiHost": "https://squizzy.os1.nl"
       }
     }
   },
