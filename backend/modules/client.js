@@ -7,7 +7,7 @@ sanityClientConfig.token = options.token
 sanityClientConfig.apiHost = options.greenlocks.enabled
   ? options.apiHost
     ? options.apiHost
-    : 'https://squizzy.os1.nl'
+    : 'https://www.squizzy.nl'
   : 'http://localhost:' + (options.PORT || 3900)
 const client = sanityClient(sanityClientConfig)
 
