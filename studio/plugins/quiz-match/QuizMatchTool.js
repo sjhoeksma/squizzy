@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {StateLink, withRouterHOC, IntentLink} from 'part:@sanity/base/router'
-import Spinner from 'part:@sanity/components/loading/spinner'
 import Preview from 'part:@sanity/base/preview'
 import sanityClient from 'part:@sanity/base/client'
 const client = sanityClient.withConfig({apiVersion: 'v1'})
