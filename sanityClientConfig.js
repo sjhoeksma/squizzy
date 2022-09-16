@@ -9,6 +9,6 @@ module.exports = {
     useProjectHostname: false,
     gradientMode: true,
     useCdn: false,
-    apiVersion: 'v2021-06-07'
+    apiVersion: 'v1'
   }
 }
