@@ -22,6 +22,9 @@ module.exports = {
   },
 
   withdrawPlayerFromMatch: async (playerId, match) => {
+    if (!match) {
+      return
+    }
     return client
       .patch(match._id)
       .unset([`players[_ref=="${playerId}"]`])
@@ -29,6 +32,9 @@ module.exports = {
   },
 
   ensurePlayerParticipation: async (player, match) => {
+    if (!match) {
+      return
+    }
     const playerRef = {_key: nanoid(), _type: 'reference', _ref: player._id}
     return client
       .patch(match._id)
@@ -39,6 +45,9 @@ module.exports = {
   },
 
   submitAnswer: async (match, playerId, questionKey, selectedChoiceKey) => {
+    if (!match) {
+      return
+    }
     // Has this player already answered the same quiestion?
     let indexOfExistingAnswer = -1
     const answers = match.answers || []
@@ -68,6 +77,10 @@ module.exports = {
       questionKey,
       selectedChoiceKey,
       submittedAt: new Date().toISOString()
+    }
+
+    if (!match) {
+      return
     }
 
     return client

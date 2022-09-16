@@ -76,6 +76,9 @@ class Match extends React.Component {
 
   handleStartMatch = () => {
     const {match} = this.props
+    if (!match) {
+      return
+    }
     const firstQuestionKey = match.quiz.questions[0]._key
     client
       .patch(match._id)
@@ -89,6 +92,9 @@ class Match extends React.Component {
 
   handleNextQuestion = () => {
     const {match} = this.props
+    if (!match) {
+      return
+    }
     const next = nextQuestion(match)
     if (next) {
       client
@@ -100,6 +106,9 @@ class Match extends React.Component {
 
   handleFinishMatch = () => {
     const {match} = this.props
+    if (!match) {
+      return
+    }
     client
       .patch(match._id)
       .set({
@@ -112,6 +121,9 @@ class Match extends React.Component {
 
   handleCancelMatch = () => {
     const {match} = this.props
+    if (!match) {
+      return
+    }
     client
       .patch(match._id)
       .set({isCurrentQuestionOpen: false})
@@ -121,6 +133,9 @@ class Match extends React.Component {
 
   handleRestartMatch = () => {
     const {match} = this.props
+    if (!match) {
+      return
+    }
     client
       .patch(match._id)
       .set({isCurrentQuestionOpen: false})
@@ -130,6 +145,9 @@ class Match extends React.Component {
 
   handleCloseQuestion = () => {
     const {match} = this.props
+    if (!match) {
+      return
+    }
     client
       .patch(match._id)
       .set({isCurrentQuestionOpen: false})
@@ -138,6 +156,9 @@ class Match extends React.Component {
 
   handleKickPlayer = playerId => {
     const {match} = this.props
+    if (!match) {
+      return
+    }
     client
       .patch(match._id)
       .unset([`players[_ref=="${playerId}"]`])
@@ -154,7 +175,10 @@ class Match extends React.Component {
 
   render() {
     const {match} = this.props
-    const {selectedDocumentId} = this.props.router.state
+    if (!match) {
+      return
+    }
+   // const {selectedDocumentId} = this.props.router.state
 
     if (!match) {
       return <Spinner message="Loading match..." center />
