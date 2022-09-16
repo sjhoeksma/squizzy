@@ -6,9 +6,9 @@ module.exports = {
     // make sure that the dataset name is the same as the one in /studio/sanity.json
     dataset: 'production',
     namespace: 'production',
-    useProjectHostname: true,
+    useProjectHostname: false,
     gradientMode: true,
     useCdn: false,
-    apiVersion: 'v1'
+    apiVersion: 'v2021-06-07'
   }
 }
