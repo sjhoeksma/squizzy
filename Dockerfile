@@ -7,6 +7,7 @@ RUN npm audit fix
 RUN npm run build 
 WORKDIR /squizzy/studio
 RUN npm install
+RUN npm upgrade
 #RUN npm audit fix
 RUN npm run build
 

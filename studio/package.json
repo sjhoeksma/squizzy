@@ -10,7 +10,7 @@
     "start": "sanity start",
     "dev": "sanity start",
     "test": "sanity check",
-    "build": "sanity build --no-minify",
+    "build": "sanity build",
     "build_dev": "sanity build --no-minify",
     "upgrade": "sanity upgrade"
   },
