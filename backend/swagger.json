@@ -9,7 +9,7 @@
     "url" : "/"
   } ],
   "paths" : {
-    "/v1/data/mutate/{environment}" : {
+    "/v2021-06-07/data/mutate/{environment}" : {
       "post" : {
         "description" : "Mutate a dataset",
         "parameters" : [ {
@@ -48,7 +48,7 @@
         }
       }
     },
-    "/v1/data/query/{environment}" : {
+    "/v2021-06-07/data/query/{environment}" : {
       "get" : {
         "description" : "Query a data set",
         "parameters" : [ {
@@ -88,7 +88,7 @@
         }
       }
     },
-    "/v1/data/doc/*" : {
+    "/v2021-06-07/data/doc/*" : {
       "get" : {
         "description" : "Load completed dataset",
         "responses" : {
@@ -98,7 +98,7 @@
         }
       }
     },
-    "/v1/users/me" : {
+    "/v2021-06-07/users/me" : {
       "get" : {
         "description" : "Information of loggedin user",
         "responses" : {
@@ -116,7 +116,7 @@
         }
       }
     },
-    "/v1/versions" : {
+    "/v2021-06-07/versions" : {
       "get" : {
         "description" : "Check the pacakge infromation",
         "responses" : {
@@ -140,7 +140,7 @@
         "url" : "http://pv5f4dow.localhost:3900"
       } ]
     },
-    "/v1/datasets" : {
+    "/v2021-06-07/datasets" : {
       "get" : {
         "description" : "Return all data set",
         "responses" : {
@@ -158,7 +158,7 @@
         }
       }
     },
-    "/v1/ping" : {
+    "/v2021-06-07/ping" : {
       "get" : {
         "description" : "Connection tester",
         "responses" : {

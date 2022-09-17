@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {StateLink, withRouterHOC, IntentLink} from 'part:@sanity/base/router'
 import Preview from 'part:@sanity/base/preview'
 import sanityClient from 'part:@sanity/base/client'
-const client = sanityClient.withConfig({apiVersion: 'v1'})
+const client = sanityClient.withConfig({apiVersion: 'v2021-06-07'})
 import schema from 'part:@sanity/base/schema'
 import Squizzy from './components/Squizzy'
 import Match from './components/Match'
