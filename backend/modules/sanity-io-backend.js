@@ -1170,7 +1170,7 @@ backend.router = function(app, options = {}) {
 
   //User login, me will return the current person
   app.all(
-    ['/' + backend.apiVersion() + '/users/:id', `/users/:id`],
+    ['/' + backend.apiVersion() + '/users/:id', `/users/:id`,'/*/users/:id'],
     backend.verifyJWT,
     async function(req, res, next) {
       if (req.params.id === 'me') {
@@ -1203,12 +1203,12 @@ backend.router = function(app, options = {}) {
   )
 
   //We allow cors actions
-  app.post(['/' + backend.apiVersion() + '/cors', '/cors'], function(req, res, next) {
+  app.post(['/' + backend.apiVersion() + '/cors', '/cors','/*/cors'], function(req, res, next) {
     res.json({allowed: true})
   })
 
   //Check if version of software are up-to-date
-  app.get(['/' + backend.apiVersion() + '/versions', '/versions'], function(req, res, next) {
+  app.get(['/' + backend.apiVersion() + '/versions', '/versions','/*/versions'], function(req, res, next) {
     fetch(
       'https://api.sanity.io/' +
         backend.apiVersion() +
@@ -1220,14 +1220,14 @@ backend.router = function(app, options = {}) {
   })
 
   //Response to a ping
-  app.get(['/' + backend.apiVersion() + '/ping', '/ping'], function(req, res, next) {
+  app.get(['/' + backend.apiVersion() + '/ping', '/ping','/*/ping'], function(req, res, next) {
     res.header('Content-Type', 'text/plain; charset=utf-8')
     res.send('PONG')
   })
 
   //Handle raw documents
   app.get(
-    ['/' + backend.apiVersion() + '/data/doc/:dataSet/*', '/doc/:dataSet/*'],
+    ['/' + backend.apiVersion() + '/data/doc/:dataSet/*', '/doc/:dataSet/*','/*/doc/:dataSet/*'],
     backend.verifyJWT,
     function(req, res, next) {
       backend.documents(req).then(data => {
@@ -1237,7 +1237,7 @@ backend.router = function(app, options = {}) {
   )
 
   //Create store of project databases, if still in cache return it otherwise return it
-  app.get(['/' + backend.apiVersion() + '/data/query/:dataSet', '/query/:dataSet'], function(
+  app.get(['/' + backend.apiVersion() + '/data/query/:dataSet', '/query/:dataSet','/*/query/:dataSet'], function(
     req,
     res,
     next
@@ -1249,7 +1249,7 @@ backend.router = function(app, options = {}) {
   })
   
    //Create store of project databases, if still in cache return it otherwise return it
-  app.get(['/' + backend.apiVersion() + '/projects/:dataSet/*', '/projects/:dataSet/*'], function(
+  app.get(['/' + backend.apiVersion() + '/projects/:dataSet/*', '/projects/:dataSet/*','/*/projects/:dataSet/*'], function(
     req,
     res,
     next
@@ -1262,7 +1262,7 @@ backend.router = function(app, options = {}) {
 
   //Mutate a recrod
   app.post(
-    ['/' + backend.apiVersion() + '/data/mutate/:dataSet', '/mutate/:dataSet'],
+    ['/' + backend.apiVersion() + '/data/mutate/:dataSet', '/mutate/:dataSet','/*/mutate/:dataSet','/*/data/mutate/:dataSet'],
     backend.verifyJWT,
     function(req, res, next) {
       backend.mutate(req).then(data => {
@@ -1273,7 +1273,7 @@ backend.router = function(app, options = {}) {
   )
 
   //Datasets
-  app.get(['/' + backend.apiVersion() + '/datasets/*', '/datasets/*'], backend.verifyJWT, function(
+  app.get(['/' + backend.apiVersion() + '/datasets/*', '/datasets/*','/*/datasets/*'], backend.verifyJWT, function(
     req,
     res,
     next
@@ -1285,7 +1285,7 @@ backend.router = function(app, options = {}) {
 
   //Listen for changes
   app.get(
-    ['/' + backend.apiVersion() + '/data/listen/:dataSet', '/listen/:dataSet'],
+    ['/' + backend.apiVersion() + '/data/listen/:dataSet', '/listen/:dataSet','/*/listen/:dataSet','/*/data/listen/:dataSet'],
     backend.listen
   )
 
@@ -1293,6 +1293,7 @@ backend.router = function(app, options = {}) {
   app.post(
     [
       '/' + backend.apiVersion() + '/assets/images/:dataSet',
+      '/*/assets/images/:dataSet',
       '/assets/images/:dataSet',
       '/images/:dataSet'
     ],
@@ -1308,7 +1309,9 @@ backend.router = function(app, options = {}) {
   app.get(
     [
       '/' + backend.apiVersion() + '/images/:dataSet/*',
+      '/*/images/:dataSet/*',
       '/' + backend.apiVersion() + '/images/*/:dataSet/*',
+      '/*/images/*/:dataSet/*',
       '/images/:dataSet/*'
     ],
     function(req, res, next) {
@@ -1323,6 +1326,7 @@ backend.router = function(app, options = {}) {
     app.get(
       [
         '/' + backend.apiVersion() + '/addons/unsplash/photos/:id/download',
+        '/*/addons/unsplash/photos/:id/download',
         '/addons/unsplash/photos/:id/download'
       ],
       backend.verifyJWT,
@@ -1338,7 +1342,7 @@ backend.router = function(app, options = {}) {
       }
     )
     app.get(
-      ['/' + backend.apiVersion() + '/addons/unsplash/photos', '/addons/unsplash/photos'],
+      ['/' + backend.apiVersion() + '/addons/unsplash/photos', '/addons/unsplash/photos','/*/addons/unsplash/photos'],
       backend.verifyJWT,
       function(req, res, next) {
         fetch('https://api.unsplash.com/photos' + req.url.substr(req.url.indexOf('?')), {
@@ -1354,6 +1358,7 @@ backend.router = function(app, options = {}) {
     app.get(
       [
         '/' + backend.apiVersion() + '/addons/unsplash/search/photos',
+        '/*/addons/unsplash/search/photos',
         '/addons/unsplash/search/photos'
       ],
       backend.verifyJWT,
@@ -1396,7 +1401,7 @@ backend.router = function(app, options = {}) {
     return grantObj(req, res, next)
   })
 
-  app.all(['/' + backend.apiVersion() + '/auth/providers', '/auth/providers'], function(
+  app.all(['/' + backend.apiVersion() + '/auth/providers', '/auth/providers','/*/auth/providers'], function(
     req,
     res,
     next
@@ -1421,7 +1426,7 @@ backend.router = function(app, options = {}) {
     })
   })
 
-  app.all(['/' + backend.apiVersion() + '/auth/testCookie', '/auth/testCookie'], function(
+  app.all(['/' + backend.apiVersion() + '/auth/testCookie', '/auth/testCookie','/*/auth/testCookie'], function(
     req,
     res,
     next
@@ -1429,7 +1434,7 @@ backend.router = function(app, options = {}) {
     res.send('Ok')
   })
 
-  app.post(['/' + backend.apiVersion() + '/auth/logout', '/auth/logout'], function(req, res, next) {
+  app.post(['/' + backend.apiVersion() + '/auth/logout', '/auth/logout','/*/auth/logout'], function(req, res, next) {
     req.session.regenerate(err => {
       res.send()
     })
@@ -1440,7 +1445,8 @@ backend.router = function(app, options = {}) {
   app.get(
     [
       '/data/history/:dataSet/documents/*',
-      '/' + backend.apiVersion() + '/data/history/:dataSet/documents/*'
+      '/' + backend.apiVersion() + '/data/history/:dataSet/documents/*',
+      '/*/data/history/:dataSet/documents/*'
     ],
     backend.verifyJWT,
     function(req, res, next) {
@@ -1460,7 +1466,8 @@ backend.router = function(app, options = {}) {
   app.get(
     [
       '/data/history/:dataSet/transactions/*',
-      '/' + backend.apiVersion() + '/data/history/:dataSet/transactions/*'
+      '/' + backend.apiVersion() + '/data/history/:dataSet/transactions/*',
+      '/*/data/history/:dataSet/transactions/*'
     ],
     backend.verifyJWT,
     function(req, res, next) {
@@ -1480,7 +1487,7 @@ backend.router = function(app, options = {}) {
   )
 
   //Create store of project databases, if still in cache return it otherwise return it
-  app.all(['/' + backend.apiVersion() + '/*'], function(req, res, next) {
+  app.all(['/' + backend.apiVersion() + '/*','/v1/*'], function(req, res, next) {
     console.log('No Handler for:', req._parsedUrl)
     next()
   })
