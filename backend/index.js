@@ -15,6 +15,7 @@ const options = require('./modules/configOptions')
 const setupWebSocket = require('./modules/setupWebSocket')
 var app = express()
 
+backend.options = mergeDeep(backend.options,options)
 //Swagger Stats
 if (options.stats.enabled) {
   var swStatOptions = {
@@ -61,6 +62,7 @@ app.get('/studio/*', function(req, res) {
 app.use('/api/sign-up-player', apiSignUp)
 app.use('/api/submit-answer', apiSubmitAnswer)
 app.use('/api/withdraw-player', apiWithdrawPlayer)
+
 
 //Add the sainty-io backend urls
 backend.router(app, options)
