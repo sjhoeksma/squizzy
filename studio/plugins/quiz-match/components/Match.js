@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {get} from 'lodash'
 import {withRouterHOC} from 'part:@sanity/base/router' // eslint-disable-line
 import sanityClient from 'part:@sanity/base/client'
-const client = sanityClient.withConfig({apiVersion: 'v2021-06-07'})
+const client = sanityClient.withConfig({apiVersion: 'v1'})
 import Button from 'part:@sanity/components/buttons/default' // eslint-disable-line
 import Spinner from 'part:@sanity/components/loading/spinner' // eslint-disable-line
 import IntentButton from 'part:@sanity/components/buttons/intent' // eslint-disable-line

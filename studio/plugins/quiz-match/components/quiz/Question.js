@@ -1,6 +1,6 @@
 import React from 'react'
 import sanityClient from 'part:@sanity/base/client'
-const client = sanityClient.withConfig({apiVersion: 'v2021-06-07'})
+const client = sanityClient.withConfig({apiVersion: 'v1'})
 import imageUrlBuilder from '@sanity/image-url'
 import styles from '../styles/Question.css'
 import Icons from '../Icons'

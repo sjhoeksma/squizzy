@@ -42,7 +42,7 @@ var backend = {
   clients: [], //List of active clients
 
   options: {
-    apiVersion: 'v2021-06-07',
+    apiVersion: 'v1',
     url: 'http://localhost:3900',
     secret: 'sanity.io',
     //Config items
