@@ -3,11 +3,11 @@ FROM node:14 AS base
 WORKDIR /squizzy
 COPY . .
 RUN npm install
-RUN npm audit fix
+RUN npm upgrade
 RUN npm run build 
 WORKDIR /squizzy/studio
 RUN npm install
-RUN npm audit fix
+RUN npm upgrade
 RUN npm run build
 
 FROM node:14 AS release
@@ -16,7 +16,7 @@ COPY ./sanityClientConfig.js .
 WORKDIR /squizzy/backend
 COPY ./backend .
 RUN npm install
-RUN npm audit fix
+RUN npm upgrade
 COPY --from=base /squizzy/dist ./app
 COPY --from=base /squizzy/studio/dist ./studio
 EXPOSE 3900
